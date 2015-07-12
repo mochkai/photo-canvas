@@ -1,2 +1,3 @@
-# photo-canvas
-An image manipulation tool using canvas and the fabric.js library.
+# Photo Canvas 
+An image manipulation library, implementing a mondernt GUI integrated with Fabric.js
+
