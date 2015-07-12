@@ -28,6 +28,7 @@ var PhotoCanvas = (function ()
 	function initialize( _canvas, _options )
 	{
 		var instance = {};
+
 		instance.options	=
 		{
 			popup		: false,
@@ -51,10 +52,9 @@ var PhotoCanvas = (function ()
 
 		};
 
-		instance.visible = true;
+		instance.active = true;
 
 		// Cofigure options if exists
-
 		if ( typeof _options === "object" )
 		{
 			for ( option in _options )
@@ -63,29 +63,53 @@ var PhotoCanvas = (function ()
 				{
 					for ( tool in _options.tools )
 					{
-						options.tools[ tool ] = _options.tools[ tool ];
+						instance.options.tools[ tool ] = _options.tools[ tool ];
 					}
 				}
 				else
 				{
-					options[ option ] = _options[ option ];
+					instance.options[ option ] = _options[ option ];
 				}
 			}
 		}
 
 		instance.element = document.getElementById( _canvas );
+		instance.options.artboard = { width : instance.element.offsetWidth, height : instance.element.offsetHeight };
 
-		instance.destroy =  function()
-		{
-			console.log( "destroy logic : " + instance );
+
+		instance.canvas  = new fabric.Canvas( _canvas );
+		instance.canvas.setDimensions( instance.options.artboard );
+
+		return {
+
+			isActive	: function()
+			{
+				return instance.active;
+			},
+
+			disable : function()
+			{
+				console.log( "disable" );
+				instance.active = false;
+			},
+
+			enable : function()
+			{
+				console.log( "disable" );
+				instance.active = true;
+			},
+
+			destroy : function()
+			{
+				console.log( "hideControls" );
+			}
+
 		};
-
-		return instance;
 	}
 
 	return {
 		
-		newInstance : function( _canvas, _options )
+		create : function( _canvas, _options )
 		{
 			instances.push( initialize( _canvas, _options ) );
 

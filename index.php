@@ -20,12 +20,16 @@
 		<script src="assets/js/fabric.min.js" ></script>
 		<script src="assets/js/photo-canvas.js" ></script>
 		<script type="text/javascript" >
-			var canvas1 = PhotoCanvas.newInstance("photo-canvas");
-			var canvas2 = PhotoCanvas.newInstance("photo-canvas-2");
+			var canvas1 = PhotoCanvas.create("photo-canvas");
+			var canvas2 = PhotoCanvas.create("photo-canvas-2");
 
 			console.log( PhotoCanvas.getAllInstances() );
 			console.log( canvas1 );
 			console.log( canvas2 );
+
+			console.log( canvas2.visible );
+			canvas2.destroy();
+			console.log( canvas2.visible );
 		</script>
 	</body>
 </html> 
