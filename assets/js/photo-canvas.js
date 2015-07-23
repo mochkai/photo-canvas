@@ -80,6 +80,25 @@ var PhotoCanvas = (function ()
 		instance.canvas  = new fabric.Canvas( _canvas );
 		instance.canvas.setDimensions( instance.options.artboard );
 
+		/**
+		 *  Tools Initialization
+		 */
+		
+		instance.tools = {};
+		
+		instance.tools.container = document.createElement("div");
+		instance.tools.container.setAttribute("id", "photo-canvas-tools");
+		
+		if ( instance.options.tools.artboard )
+		{
+			instance.tools.artboard = document.createElement("div");
+			instance.tools.artboard.setAttribute("id", "photo-canvas-tools-artboard");
+
+			instance.tools.container.appendChild( instance.tools.artboard );
+		}
+
+		document.body.appendChild( instance.tools.container );
+
 		return {
 
 			isActive	: function()
