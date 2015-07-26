@@ -1,0 +1,148 @@
+.photo-canvas-container
+{
+	background-color	: #D4D4D4;
+	display 			: inline-block;
+	overflow 			: hidden;
+	position			: relative;
+	outline				: 1px solid black;
+}
+
+.photo-canvas-dropzone
+{
+	width			: 98%;
+	height			: 98%;
+	background		: rgba( 175,200,225,0.35 );
+	border			: 2px solid rgba( 175,200,225,0.95 );
+	position		: absolute;
+	z-index			: 8;
+	pointer-events	: none;
+	top				: 1%;
+	left			: 1%;
+}
+
+.photo-canvas-dropzone.disabled
+{
+	display : none;
+}
+
+.photo-canvas-upload-progress
+{
+	width		: 0%;
+	height		: 5px;
+	background	: rgba( 175,225,175,0.75 );
+	border		: 1px solid rgba( 125,200,125,1 );
+	border-top	: none;
+	border-left	: none;
+	top			: 1px;
+	left		: 1px;
+	position	: absolute;
+	z-index		: 9;
+	display		: none;
+}
+
+.photo-canvas-tools-container
+{
+	width				: 30px;
+	height				: 100%;
+	border-right		: solid 1px #333333;
+	background-color	: #757474;
+	position			: absolute;
+	z-index				: 10;
+	top					: 0px;
+	left				: 0px;
+	opacity				: 0.5;
+	padding				: 3px;
+	cursor				: url(../img/cursor-default.png), url(../img/cursor-default.cur), default;
+}
+
+.photo-canvas-tools-container:hover
+{
+	opacity	: 1;
+}
+
+.photo-canvas-tools
+{
+	height		: 25px;
+	width		: 30px;
+	border		: none;
+	float		: left;
+	background	: url(../img/sm-photo-canvas-icons.png) no-repeat 0px center;
+}
+
+.photo-canvas-tools:hover
+{
+	height				: 23px;
+	background-color	: #8E8D8D;
+	border-top			: solid 1px #A2A0A0;
+	border-bottom		: solid 1px #535353;
+}
+
+.photo-canvas-tools.active,
+.photo-canvas-tools:active
+{
+	height				: 23px;
+	border-top			: solid 1px #2B2B2B;
+	border-bottom		: solid 1px #8E8D8D;
+	float				: left;
+	background-color	: #535353;
+}
+
+.photo-canvas-tools-transform
+{
+	background-position: 0px center;
+}
+
+.photo-canvas-tools-image
+{
+	background-position: -30px center;
+}
+
+.photo-canvas-tools-rect
+{
+	background-position: -60px center;
+}
+
+.photo-canvas-tools-circle
+{
+	background-position: -90px center;
+}
+
+.photo-canvas-tools-draw
+{
+	background-position: -120px center;
+}
+
+.photo-canvas-tools-text
+{
+	background-position: -150px center;
+}
+
+.photo-canvas-tools-filters
+{
+	background-position: -180px center;
+}
+
+.photo-canvas-tools-zoom
+{
+	background-position: -210px center;
+}
+
+.photo-canvas-tools-pan
+{
+	background-position: -240px center;
+}
+
+.photo-canvas-tools-crop
+{
+	background-position: -270px center;
+}
+
+.photo-canvas-tools-undo
+{
+	background-position: -300px center;
+}
+
+.photo-canvas-tools-save
+{
+	background-position: -330px center;
+}

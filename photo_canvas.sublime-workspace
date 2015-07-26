@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"create",
+				"createElement"
+			],
+			[
 				"json",
 				"json_encode"
 			],
@@ -392,13 +396,10 @@
 	"buffers":
 	[
 		{
-			"contents": "/**\n * Photo Canvas\n *\n * Canvas library for image manipulation.\n *\n * @require 	fabric.js			<https://github.com/kangax/fabric.js>\n * @author  	Thiago Amerssonis	<thiago.amerssonis@gmail.com>\n * @version  	0.0.1\n */\n\nvar PhotoCanvas = (function ()\n{\n	// Store instances\n\n	var instances = [];\n\n	/**\n	 *  Initialize\n	 *\n	 * 	Inits Photo Canvas object using suplied arguments for \n	 * 	custom options e target canvas element, setup all private implementation\n	 *\n	 * 	@author Thiago Amerssonis 		<thiago.amerssonis@gmail.com>\n	 * 	@param 	{String}	_canvas		Canvas element id, if popup is enabled canvas can be any type of element\n	 * 	@param 	{Object}	_options	Suply custom options for initializing canvas object\n	 */\n\n	function initialize( _canvas, _options )\n	{\n		var instance = {};\n\n		instance.options	=\n		{\n			popup		: false,\n			url			: \"upload.php\",\n			theme		: \"default\",\n			artboard	: \n			{\n				width	: null,\n				height	: null\n			},\n			tools		:\n			{\n				artboard	: true,\n				crop		: true,\n				image		: true,\n				filters		: true,\n				transform	: true,\n				text		: true,\n				draw		: true\n			}\n\n		};\n\n		instance.active = true;\n\n		// Cofigure options if exists\n		if ( typeof _options === \"object\" )\n		{\n			for ( option in _options )\n			{\n				if ( option == \"tools\" )\n				{\n					for ( tool in _options.tools )\n					{\n						instance.options.tools[ tool ] = _options.tools[ tool ];\n					}\n				}\n				else\n				{\n					instance.options[ option ] = _options[ option ];\n				}\n			}\n		}\n\n		instance.element = document.getElementById( _canvas );\n		instance.options.artboard = { width : instance.element.offsetWidth, height : instance.element.offsetHeight };\n\n\n		instance.canvas  = new fabric.Canvas( _canvas );\n		instance.canvas.setDimensions( instance.options.artboard );\n\n		/**\n		 *  Tools Initialization\n		 */\n		\n		var tools = document.createElement(\"div\");\n		\n		\n		if ()\n\n		return {\n\n			isActive	: function()\n			{\n				return instance.active;\n			},\n\n			disable : function()\n			{\n				console.log( \"disable\" );\n				instance.active = false;\n			},\n\n			enable : function()\n			{\n				console.log( \"disable\" );\n				instance.active = true;\n			},\n\n			destroy : function()\n			{\n				console.log( \"hideControls\" );\n			}\n\n		};\n	}\n\n	return {\n		\n		create : function( _canvas, _options )\n		{\n			instances.push( initialize( _canvas, _options ) );\n\n			return  instances[ ( instances.length - 1 ) ];\n		},\n\n		getInstance : function( _index )\n		{\n			return instances[ _index ];\n		},\n\n		getAllInstances : function()\n		{\n			return instances;\n		},\n\n		destroyInstance : function( _index )\n		{\n			instances[ _index ].destroy();\n		},\n\n		destroyAllInstances : function()\n		{\n			for ( index in instances )\n			{\n				instances[ index ].destroy();\n			}\n		}\n	};\n\n})();",
 			"file": "assets/js/photo-canvas.js",
-			"file_size": 2765,
-			"file_write_time": 130811951670567095,
 			"settings":
 			{
-				"buffer_size": 2725,
+				"buffer_size": 3138,
 				"line_ending": "Windows"
 			}
 		}
@@ -787,15 +788,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2725,
+						"buffer_size": 3138,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								915,
-								915
+								1595,
+								1595
 							]
 						],
 						"settings":
@@ -805,7 +806,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 494.0,
+						"translation.y": 546.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

@@ -2,14 +2,21 @@
 	<head>
 		<style type="text/css">
 		
-		canvas 
+		canvas#photo-canvas
 		{
-			width	: 500px;
-			height	: 500px;
-			outline	: 1px solid black;
+			width	: 800px;
+			height	: 600px;
+		}
+		
+		canvas#photo-canvas-2
+		{
+			width	: 100%;
+			height	: 100%;
 		}
 
 		</style>
+
+		<link rel="stylesheet" href="assets/css/photo-canvas-default.css">
 	</head>
 	<body>
 
@@ -18,18 +25,11 @@
 		
 
 		<script src="assets/js/fabric.min.js" ></script>
+		<script src="assets/js/dropzone.min.js" ></script>
 		<script src="assets/js/photo-canvas.js" ></script>
 		<script type="text/javascript" >
 			var canvas1 = PhotoCanvas.create("photo-canvas");
 			var canvas2 = PhotoCanvas.create("photo-canvas-2");
-
-			console.log( PhotoCanvas.getAllInstances() );
-			console.log( canvas1 );
-			console.log( canvas2 );
-
-			console.log( canvas2.visible );
-			canvas2.destroy();
-			console.log( canvas2.visible );
 		</script>
 	</body>
 </html> 
