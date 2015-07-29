@@ -39,7 +39,8 @@ var PhotoCanvas = (function ()
 		instance.options	=
 		{
 			popup		: false,
-			url			: "assets/php/upload.php",
+			upload_url	: "assets/php/upload.php",
+			save_url	: "assets/php/save.php",
 			theme		: "default",
 			viewport	: 
 			{
@@ -58,7 +59,7 @@ var PhotoCanvas = (function ()
 				zoom		: true,
 				pan			: true,
 				crop		: true,
-				undo		: true,
+				//undo		: true, //TODO : implement undo logic
 				save		: true
 			},
 			zoom	:
@@ -179,6 +180,8 @@ var PhotoCanvas = (function ()
 					var canvas_viewport	= instance.canvas.viewportTransform;
 					var old_point		= new fabric.Point( -canvas_viewport[4], -canvas_viewport[5] )
 
+					var dataJson = JSON.stringify( instance.canvas.toJSON() );
+					
 					instance.canvas.setZoom(1);
 					instance.canvas.absolutePan( new fabric.Point( 0, 0 ) );
 
@@ -187,17 +190,14 @@ var PhotoCanvas = (function ()
 					var dataURL = instance.canvas.toDataURL({ 
 						format	: 'png'
 					});
+					
+					instance.image_data.value	= dataURL;
+					instance.json_data.value	= dataJson;
 
 					instance.canvas.setZoom( old_zoom );
 					instance.canvas.absolutePan( old_point );
 
-					console.log( dataURL );
-
-					var xmlhttp = new XMLHttpRequest();
-
-					xmlhttp.open("POST","assets/php/save.php",true);
-					xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-					xmlhttp.send("image_data="+dataURL);
+					instance.save_form.submit();
 
 					break;
 
@@ -458,7 +458,7 @@ var PhotoCanvas = (function ()
 		instance.container.appendChild( instance.dropzone_ovelay );
 
 		instance.dropzone = new Dropzone( instance.container, { 
-			url			: instance.options.url,
+			url			: instance.options.upload_url,
 			paramName	: _canvas,
 			clickable	: true
 		} );
@@ -488,6 +488,31 @@ var PhotoCanvas = (function ()
 
 			instance.container.removeChild( _file.previewElement );
 		} );
+
+		/**
+		 * 	Save Input
+		 */
+		
+		instance.save_form	= document.createElement("form");
+		instance.save_form.setAttribute("class", "photo-canvas-save-form");
+		instance.save_form.setAttribute("method", "POST");
+		instance.save_form.setAttribute("action", instance.options.save_url);
+		
+		instance.image_data	= document.createElement("input");
+		instance.image_data.setAttribute("class", "photo-canvas-image-data");
+		instance.image_data.setAttribute("name", "image_data");
+		instance.image_data.setAttribute("type", "hidden");
+		
+		instance.json_data	= document.createElement("input");
+		instance.json_data.setAttribute("class", "photo-canvas-json-data");
+		instance.json_data.setAttribute("name", "json_data");
+		instance.json_data.setAttribute("type", "hidden");
+
+		instance.save_form.appendChild( instance.image_data );
+		instance.save_form.appendChild( instance.json_data );
+
+		instance.container.appendChild( instance.save_form );
+
 
 		/**
 		 *  Fabric Initialization
